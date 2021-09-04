@@ -4,6 +4,9 @@ public class Parqueo {
     boolean aereo;
     int usos;
     Vehiculo carro;
+    public Parqueo(){
+        
+    }
     public Parqueo(String tipo, boolean techado, boolean aereo){
         this.tipo=tipo;
         this.techado=techado;
@@ -40,6 +43,9 @@ public class Parqueo {
     }
     public void setAereo(boolean aereo){
         this.aereo = aereo;
+    }
+    public void setUsos(int usos){
+        this.usos = usos;
     }
 
 }

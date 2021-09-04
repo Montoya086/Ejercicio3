@@ -1,5 +1,9 @@
-estandar;false;false;0|12;J2343Cd;Honda;2002
-estandar;false;false;0|null
-estandar;false;false;0|null
-estandar;false;false;0|null
-estandar;false;false;0|null
+estandar;false;false;1,12;j1232;Honda;2002
+estandar;false;false;1,15;C1222;Toyota;2002
+estandar;false;false;1,10;T2382;Ford;2012
+estandar;false;false;1,17;R3454;Ferrari;2020
+estandar;false;false;1,7;E23453;Toyota;2005
+europeo;true;true;1,17;W13434;Kia;2017
+europeo;true;true;1,13;Q3454;Honda;2015
+europeo;true;true;1,16;A1445;Kia;2018
+largo;true;true;0,null
