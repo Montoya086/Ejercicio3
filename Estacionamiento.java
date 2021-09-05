@@ -14,22 +14,22 @@ public class Estacionamiento {
     int parqueoLleno=0;
     int contador_horas=0;
     int contador_salidas=0;
-    public Estacionamiento(){
+    public Estacionamiento(){//constructor
         parqueos=new ArrayList<Parqueo>();
         horarios= new ArrayList<String[]>();
         marcas = new ArrayList<String[]>();
         Datos_carros=new File("Datos_Carros.txt");
         Datos=new File("Datos.txt");
     }
-    public void agregar_Espacios(String tipo, boolean techado, boolean aereo){
+    public void agregar_Espacios(String tipo, boolean techado, boolean aereo){//agregar espacios
         parqueos.add(new Parqueo(tipo, techado, aereo));
     }
-    public void agregar_espacios_vacios(){
+    public void agregar_espacios_vacios(){//agregar espacios por defecto
         parqueos.add(new Parqueo());
     }
-    public boolean verificacion_parqueo_lleno(){
+    public boolean verificacion_parqueo_lleno(){//verificar si el parqueo está lleno, devuelve true si esta lleno
         boolean bandera1=true;
-        for (int j=0;j<parqueos.size();j++) {
+        for (int j=0;j<parqueos.size();j++) {//busca espacios vacios
             if(parqueos.get(j).getCarro()==null){
                 bandera1=false;
             }
@@ -40,9 +40,9 @@ public class Estacionamiento {
             return false;
         }
     }
-    public boolean verificacion_parqueo_vacio(){
+    public boolean verificacion_parqueo_vacio(){//verificar si el parqueo esta vacio
         boolean bandera1=true;
-        for (int j=0;j<parqueos.size();j++) {
+        for (int j=0;j<parqueos.size();j++) { // busca espacios llenos
             if(parqueos.get(j).getCarro()!=null){
                 bandera1=false;
             }
@@ -53,10 +53,10 @@ public class Estacionamiento {
             return false;
         }
     }
-    public boolean verificacion_de_placa_existe(String placa){
+    public boolean verificacion_de_placa_existe(String placa){//verificar si la placa existe
         boolean bandera1=false;
         for (int j=0;j<parqueos.size();j++) {
-            if(parqueos.get(j).getCarro()!=null){
+            if(parqueos.get(j).getCarro()!=null){//busca las placas entre los carros que existen
                 if(parqueos.get(j).getCarro().get_placa().equals(placa)){
                     bandera1=true;
                 }
@@ -68,20 +68,20 @@ public class Estacionamiento {
             return false;
         }
     }
-    public void ingreso(int hora_entrada, String placa, String marca, String modelo){
+    public void ingreso(int hora_entrada, String placa, String marca, String modelo){//ingresar un nuevo carro
         boolean bandera=true;
         for (int i=0;i<parqueos.size()&&bandera;i++) {
-            if(parqueos.get(i).getCarro()==null){
+            if(parqueos.get(i).getCarro()==null){//ingresa en el primer espacio vacio
                 parqueos.get(i).setCarro(new Vehiculo(hora_entrada, placa, marca, modelo));
                 parqueos.get(i).addUsos();
                 bandera=false;
             }
         }
         boolean bandera2=false;
-        if(marcas.size()>0){
+        if(marcas.size()>0){//agregar al contador de marcas
             for(int i=0;i<marcas.size();i++){ // buscar si la marca ya existe
                 if(marcas.get(i)!=null){
-                    if(marcas.get(i)[0].equals(marca)){
+                    if(marcas.get(i)[0].toLowerCase().equals(marca.toLowerCase())){
                         bandera2=true;
                         int cont = Integer.parseInt(marcas.get(i)[1]);
                         cont++;
@@ -90,11 +90,11 @@ public class Estacionamiento {
                 }
             }
         }
-        if(!bandera2){
+        if(!bandera2){//agregar un nuevo contador
             marcas.add(new String[]{marca,"1"});
         }
     }
-    public void salida(String placa, int hora_salida){
+    public void salida(String placa, int hora_salida){//salida del carro
         try{
             int ncarro=-1;
             boolean bandera=false;
@@ -108,9 +108,9 @@ public class Estacionamiento {
                             if(horarios.get(i)!=null){
                                 if(horarios.get(i)[0].equals(horario)){
                                     bandera=true;
-                                    int cont = Integer.parseInt(horarios.get(i)[1]);
+                                    int cont = Integer.parseInt(horarios.get(i)[1]);// sacar el contador a int
                                     cont++;
-                                    horarios.get(i)[1]=cont+""; 
+                                    horarios.get(i)[1]=cont+""; //meter el nuevo contador a string
                                 }
                             }
                         }
@@ -120,10 +120,10 @@ public class Estacionamiento {
             if(ncarro>-1){
                 int hora_entrada = parqueos.get(ncarro).getCarro().get_hora_entrada();
                 String horario = hora_entrada+"-"+hora_salida;
-                if(!bandera){
+                if(!bandera){//agregar un contador de horarios
                     horarios.add(new String[]{horario,"1"});
                 }
-                int tiempo = Math.abs(hora_salida-hora_entrada);
+                int tiempo = Math.abs(hora_salida-hora_entrada);//sumatoria de tiempos
                 contador_horas = contador_horas + tiempo;
                 contador_salidas++;
                 parqueos.get(ncarro).setCarro(null);
@@ -132,19 +132,19 @@ public class Estacionamiento {
 
         }
     }
-    public String mayor_horario(){
+    public String mayor_horario(){//horarios mayormente usados
         try{
             String horario_mayor="No hay horarios actualmente";
             Integer[] conts = new Integer[horarios.size()];
-            if(horarios.size()>0){
-                for(int i=0;i<horarios.size();i++){
+            if(horarios.size()>0){//si existen horarios en los contadores
+                for(int i=0;i<horarios.size();i++){//crea un array con los contadores
                     conts[i]=Integer.parseInt(horarios.get(i)[1]); 
                 }
-                Arrays.sort(conts, Collections.reverseOrder());
-                int mayor = conts[0];
+                Arrays.sort(conts, Collections.reverseOrder());//ordena de mayor a menor
+                int mayor = conts[0];// agarra el mayor
                 for(int i=0;i<horarios.size();i++){
                     if(horarios.get(i)[1].equals(Integer.toString(mayor))){
-                        horario_mayor = horarios.get(i)[0];
+                        horario_mayor = horarios.get(i)[0];//busca el intervalo que tiene dicho contador
                     }
                 }
             }
@@ -157,15 +157,15 @@ public class Estacionamiento {
         try{
             String marca_mayor="No se han registrado carros";
             Integer[] conts = new Integer[marcas.size()];
-            if(marcas.size()>0){
-                for(int i=0;i<marcas.size();i++){
+            if(marcas.size()>0){//si existen marcas en los contadores
+                for(int i=0;i<marcas.size();i++){//crea un array con los contadores
                     conts[i]=Integer.parseInt(marcas.get(i)[1]); 
                 }
-                Arrays.sort(conts, Collections.reverseOrder());
-                int mayor = conts[0];
+                Arrays.sort(conts, Collections.reverseOrder());//ordena de mayor a menor
+                int mayor = conts[0];//agarra el mayor
                 for(int i=0;i<marcas.size();i++){
                     if(marcas.get(i)[1].equals(Integer.toString(mayor))){
-                        marca_mayor = marcas.get(i)[0];
+                        marca_mayor = marcas.get(i)[0];//busca la marca que tiene dicho contador
                     }
                 }
             }
@@ -205,7 +205,7 @@ public class Estacionamiento {
             return "No se ha podido crear el archivo"; 
         }
     }
-    public void guardar_datos(){
+    public void guardar_datos(){//guardar datos de la empresa
         try{
             FileWriter w = new FileWriter("Datos.txt",true);
             if(horarios.size()>0){//guarda el listado de horarios con sus usos
@@ -243,7 +243,7 @@ public class Estacionamiento {
 
         }
     }
-    public void leer_datos(){
+    public void leer_datos(){// leer datos de la empresa
         try{
             FileReader r = new FileReader("Datos.txt");
             BufferedReader br = new BufferedReader(r);
@@ -266,13 +266,13 @@ public class Estacionamiento {
                     }
                 }
             }
-            if((linea=br.readLine())!=null){
+            if((linea=br.readLine())!=null){//lee las horas totales de uso
                 contador_horas=Integer.parseInt(linea);
             }
-            if((linea=br.readLine())!=null){
+            if((linea=br.readLine())!=null){//lee el contador de carros que salen
                 contador_salidas=Integer.parseInt(linea);
             }
-            if((linea=br.readLine())!=null){
+            if((linea=br.readLine())!=null){// lee cuantos carros no pudieron entrar por parqueo lleno
                 parqueoLleno=Integer.parseInt(linea);
             }
             br.close();
@@ -361,20 +361,20 @@ public class Estacionamiento {
 
         }
     }
-    public boolean archivo1_existe(){
+    public boolean archivo1_existe(){//ver si el archivo eciste
         return Datos_carros.exists();
     }
-    public boolean archivo2_existe(){
+    public boolean archivo2_existe(){//ver si el archivo eciste
         return Datos.exists();
     }
-    public void borrar_archivos(){
+    public void borrar_archivos(){//borrar archivos
         Datos_carros.delete();
         Datos.delete();
     }
-    public void setParqueolleno(){
+    public void setParqueolleno(){//agregar a un carro que no entro porque el parqueo estaba lleno
         parqueoLleno++;
     }
-    public int promedio_horas(){
+    public int promedio_horas(){//calcular el promedio de horas
         if(contador_salidas!=0){
         return contador_horas/contador_salidas;
         }
@@ -382,16 +382,16 @@ public class Estacionamiento {
             return 0;
         }
     }
-    public String parqueo_mas_usado(){
+    public String parqueo_mas_usado(){//mostrar el numero de parqueo mas usado
         try{
             String parqueo_mayor="No se ha usado ningun parqueo";
             Integer[] conts = new Integer[parqueos.size()];
-            if(parqueos.size()>0){
+            if(parqueos.size()>0){//si hay parqueos recorre el array
                 for(int i=0;i<parqueos.size();i++){
-                    conts[i]=parqueos.get(i).getUsos(); 
+                    conts[i]=parqueos.get(i).getUsos(); //hace un array de los usos de los parqueos
                 }
-                Arrays.sort(conts, Collections.reverseOrder());
-                int mayor = conts[0];
+                Arrays.sort(conts, Collections.reverseOrder());//ordena de mayor a menor
+                int mayor = conts[0];//agarra el mayor
                 for(int i=0;i<parqueos.size();i++){
                     if(parqueos.get(i).usos==mayor){
                         parqueo_mayor = Integer.toString(i+1);
@@ -403,7 +403,24 @@ public class Estacionamiento {
             return "No se ha usado ningun parqueo";
         }
     }
-    public String vehiculos_rechazados(){
+    public String vehiculos_rechazados(){//mostrar los vehiculos que fueron rechazados porque el parqueo estaba lleno
         return Integer.toString(parqueoLleno);
+    }
+    public String caracteristicas_parqueo(String parqueo){//mostrar las caracteristicas de el parqueo ingresado
+        int nparqueo = Integer.parseInt(parqueo);
+        String techado;
+        String aereo;
+        if(parqueos.get(nparqueo).getTechado()){
+            techado="si";
+        }else{
+            techado="no";
+        }
+        if(parqueos.get(nparqueo).getAereo()){
+            aereo="si";
+        }else{
+            aereo="no";
+        }
+        String s="Tipo: "+parqueos.get(nparqueo).getTipo()+"\nTechado: "+techado+"\nAereo: "+aereo;
+        return s;
     }
 }

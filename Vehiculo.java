@@ -9,16 +9,16 @@ public class Vehiculo {
         this.marca=marca;
         this.modelo=modelo;
     }
-    public int get_hora_entrada(){
+    public int get_hora_entrada(){//obtener la hora de entrada
         return hora_entrada;
     }
-    public String get_placa(){
+    public String get_placa(){// obtener la placa
         return placa;
     }
-    public String get_marca(){
+    public String get_marca(){// obtener la marca
         return marca;
     }
-    public String get_modelo(){
+    public String get_modelo(){// obtener el modelo
         return modelo;
     }
 }

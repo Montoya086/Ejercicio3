@@ -1,5 +1,0 @@
-estandar;false;false;2,12;J7888;Ford;2019
-estandar;false;false;1,null
-estandar;false;false;1,12;H1928;Toyota;2020
-estandar;false;false;0,null
-estandar;false;false;0,null
