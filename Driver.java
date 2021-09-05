@@ -12,7 +12,8 @@ public class Driver{
             for(int i=0;i<estacionamiento.contar_datos_carros();i++){
                 estacionamiento.agregar_espacios_vacios();
             }
-            estacionamiento.leer_datos_carros();          
+            estacionamiento.leer_datos_carros();
+            estacionamiento.leer_datos();          
         }
         int r=0;
         while(r!=5){
@@ -108,13 +109,18 @@ public class Driver{
                     }
                     break;
                 case 4:// Mostrar estadisticas
-                    
+                    System.out.println(estacionamiento.mayor_horario());
+                    System.out.println(estacionamiento.promedio_horas());
+                    System.out.println("El parqueo mas usado es el No."+estacionamiento.parqueo_mas_usado());
+                    System.out.println("La marca mas utilizada es "+estacionamiento.mayor_marca());
+                    System.out.println("Se han rechazado un total de "+estacionamiento.vehiculos_rechazados()+" vehiculos debido a que el estacionamiento estaba lleno");
                     break;
                 case 5:// Guardar y salir
                     estacionamiento.borrar_archivos();
                     v.creacion_archivos(estacionamiento.crear_archivo_Datos()); 
                     v.creacion_archivos(estacionamiento.crear_archivo_Datos_carros());
-                    estacionamiento.guardar_datos_carros();                  
+                    estacionamiento.guardar_datos_carros();   
+                    estacionamiento.guardar_datos();               
                     break;
                 default:
                     break;
