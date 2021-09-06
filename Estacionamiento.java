@@ -1,3 +1,11 @@
+/*
+
+ Autor: Andrés Estuardo Montoya Wilhelm
+ Programa: Estacionamiento.java
+ Creación: 30/8/2021   Modificación: 05/9/2021
+ Lenguaje: Java
+    
+*/
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,12 +29,29 @@ public class Estacionamiento {
         Datos_carros=new File("Datos_Carros.txt");
         Datos=new File("Datos.txt");
     }
+    
+    /** 
+     * @param tipo
+     * @param techado
+     * @param Parqueo(tipo
+     * @param techado
+     * @param j=0;j<parqueos.size();j++)if(parqueos.get(j).getCarro()==null
+     */
     public void agregar_Espacios(String tipo, boolean techado, boolean aereo){//agregar espacios
         parqueos.add(new Parqueo(tipo, techado, aereo));
     }
+    
+    /** 
+     * @param j=0;j<parqueos.size();j++)if(parqueos.get(j).getCarro()==null
+     */
     public void agregar_espacios_vacios(){//agregar espacios por defecto
         parqueos.add(new Parqueo());
     }
+    
+    /** 
+     * @param j=0;j<parqueos.size();j++)if(parqueos.get(j).getCarro()==null
+     * @return boolean
+     */
     public boolean verificacion_parqueo_lleno(){//verificar si el parqueo está lleno, devuelve true si esta lleno
         boolean bandera1=true;
         for (int j=0;j<parqueos.size();j++) {//busca espacios vacios
@@ -40,6 +65,11 @@ public class Estacionamiento {
             return false;
         }
     }
+    
+    /** 
+     * @param j=0;j<parqueos.size();j++)if(parqueos.get(j).getCarro()!=null
+     * @return boolean
+     */
     public boolean verificacion_parqueo_vacio(){//verificar si el parqueo esta vacio
         boolean bandera1=true;
         for (int j=0;j<parqueos.size();j++) { // busca espacios llenos
@@ -53,6 +83,11 @@ public class Estacionamiento {
             return false;
         }
     }
+    
+    /** 
+     * @param j=0;j<parqueos.size();j++
+     * @return boolean
+     */
     public boolean verificacion_de_placa_existe(String placa){//verificar si la placa existe
         boolean bandera1=false;
         for (int j=0;j<parqueos.size();j++) {
@@ -68,6 +103,13 @@ public class Estacionamiento {
             return false;
         }
     }
+    
+    /** 
+     * @param hora_entrada
+     * @param placa
+     * @param marca
+     * @param i=0;i<parqueos.size()&&bandera;i++
+     */
     public void ingreso(int hora_entrada, String placa, String marca, String modelo){//ingresar un nuevo carro
         boolean bandera=true;
         for (int i=0;i<parqueos.size()&&bandera;i++) {
@@ -94,6 +136,11 @@ public class Estacionamiento {
             marcas.add(new String[]{marca,"1"});
         }
     }
+    
+    /** 
+     * @param placa
+     * @param hora_salida
+     */
     public void salida(String placa, int hora_salida){//salida del carro
         try{
             int ncarro=-1;
@@ -132,6 +179,10 @@ public class Estacionamiento {
 
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String mayor_horario(){//horarios mayormente usados
         try{
             String horario_mayor="No hay horarios actualmente";
@@ -153,6 +204,10 @@ public class Estacionamiento {
             return "No hay horarios actualmente";
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String mayor_marca(){ // buscar las marcas más utilizadas
         try{
             String marca_mayor="No se han registrado carros";
@@ -174,6 +229,10 @@ public class Estacionamiento {
             return "No se han registrado carros";
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String crear_archivo_Datos_carros(){// crear archivo de datos de carros y parqueos
         try{
             if(!Datos_carros.exists()){//comprobar si existe
@@ -189,6 +248,10 @@ public class Estacionamiento {
             return "No se ha podido crear el archivo"; 
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String crear_archivo_Datos(){// crear archivo de datos
         try{
             if(!Datos.exists()){// comprobar si existe
@@ -309,6 +372,10 @@ public class Estacionamiento {
         }
         
     }
+    
+    /** 
+     * @return int
+     */
     public int contar_datos_carros(){//contar los espacios de estacionamiento
         int cont=0;
         try{
@@ -361,19 +428,42 @@ public class Estacionamiento {
 
         }
     }
+    
+    /** 
+     * @param promedio_horas()if(contador_salidas!=0
+     * @return boolean
+     */
     public boolean archivo1_existe(){//ver si el archivo eciste
         return Datos_carros.exists();
     }
+    
+    /** 
+     * @param promedio_horas()if(contador_salidas!=0
+     * @return boolean
+     */
     public boolean archivo2_existe(){//ver si el archivo eciste
         return Datos.exists();
     }
+    
+    /** 
+     * @param promedio_horas()if(contador_salidas!=0
+     */
     public void borrar_archivos(){//borrar archivos
         Datos_carros.delete();
         Datos.delete();
     }
+    
+    /** 
+     * @param promedio_horas()if(contador_salidas!=0
+     */
     public void setParqueolleno(){//agregar a un carro que no entro porque el parqueo estaba lleno
         parqueoLleno++;
     }
+    
+    /** 
+     * @param )if(contador_salidas!=0
+     * @return int
+     */
     public int promedio_horas(){//calcular el promedio de horas
         if(contador_salidas!=0){
         return contador_horas/contador_salidas;
@@ -382,6 +472,10 @@ public class Estacionamiento {
             return 0;
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String parqueo_mas_usado(){//mostrar el numero de parqueo mas usado
         try{
             String parqueo_mayor="No se ha usado ningun parqueo";
@@ -403,9 +497,19 @@ public class Estacionamiento {
             return "No se ha usado ningun parqueo";
         }
     }
+    
+    /** 
+     * @param aereo;if(parqueos.get(nparqueo).getTechado()
+     * @return String
+     */
     public String vehiculos_rechazados(){//mostrar los vehiculos que fueron rechazados porque el parqueo estaba lleno
         return Integer.toString(parqueoLleno);
     }
+    
+    /** 
+     * @param aereo;if(parqueos.get(nparqueo).getTechado()
+     * @return String
+     */
     public String caracteristicas_parqueo(String parqueo){//mostrar las caracteristicas de el parqueo ingresado
         int nparqueo = Integer.parseInt(parqueo);
         String techado;

@@ -1,4 +1,16 @@
+/*
+
+ Autor: Andrés Estuardo Montoya Wilhelm
+ Programa: Driver.java
+ Creación: 30/8/2021   Modificación: 05/9/2021
+ Lenguaje: Java
+    
+*/
 public class Driver{
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args){
         Vista v= new Vista();
         Estacionamiento estacionamiento=new Estacionamiento(); // inicializa el estacionamiento

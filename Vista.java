@@ -1,3 +1,11 @@
+/*
+
+ Autor: Andrés Estuardo Montoya Wilhelm
+ Programa: Vista.java
+ Creación: 30/8/2021   Modificación: 05/9/2021
+ Lenguaje: Java
+    
+*/
 import java.lang.instrument.IllegalClassFormatException;
 import java.util.Scanner;
 public class Vista {
@@ -5,9 +13,17 @@ public class Vista {
     public Vista(){// constructor
         sc=new Scanner(System.in);
     }
+    
+    /** 
+     * @param options(
+     */
     public void creacion_archivos(String a){// todos los mensajes de archivos y su creacion
         System.out.println(a);
     }
+    
+    /** 
+     * @return int
+     */
     public int options(){// opciones principales
         try{
             System.out.println("Elija una de las siguientes opciones:");
@@ -23,6 +39,10 @@ public class Vista {
             return 0;
         }
     }
+    
+    /** 
+     * @return int
+     */
     public int pedir_hora_entrada(){//pedir la hora de entrada
         try{
             System.out.println("Ingrese la hora de entrada (0-24)");
@@ -33,6 +53,10 @@ public class Vista {
             return -999;
         }
     }
+    
+    /** 
+     * @return int
+     */
     public int pedir_hora_salida(){//pedir la hora de salida
         try{
             System.out.println("Ingrese la hora de salida (0-24)");
@@ -43,6 +67,10 @@ public class Vista {
             return -999;
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String pedir_marca(){//pedir la marca del carro
         try{
             System.out.println("Ingrese la marca del carro");
@@ -53,6 +81,10 @@ public class Vista {
             return "-error-";
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String pedir_placa(){//pedir la placa del carro
         try{
             System.out.println("Ingrese la placa");
@@ -63,6 +95,10 @@ public class Vista {
             return "-error-";
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String pedir_modelo(){//pedir el modelo del carro
         try{
             System.out.println("Ingrese el modelo");
@@ -73,6 +109,10 @@ public class Vista {
             return "-error-";
         }
     }
+    
+    /** 
+     * @return int
+     */
     public int ampliar_estacionamiento(){// mensaje de ampliar el estacionamiento
         try{
             System.out.println("Ingrese cuantos parqueos desea agregar (>1): ");
@@ -83,9 +123,17 @@ public class Vista {
             return -1;
         }
     }
+    
+    /** 
+     * @param pedir_techado(
+     */
     public void ingrese_num_mayor(){//mensaje de advertencia
         System.out.println("Ingrese un numero mayor a 1");
     }
+    
+    /** 
+     * @return String
+     */
     public String pedir_techado(){//pedir si el parqueo es techado o no
         try{
             System.out.println("El parqueo sera techado? (si/no): ");
@@ -96,6 +144,10 @@ public class Vista {
             return "-error-";
         }
     }
+    
+    /** 
+     * @return String
+     */
     public String pedir_aereo(){// pedir si es aereo o no
         try{
             System.out.println("El parqueo sera aereo? (si/no): ");
@@ -106,6 +158,10 @@ public class Vista {
             return "-error-";
         }
     }
+    
+    /** 
+     * @return int
+     */
     public int pedir_tipo(){// pedir el tipo de estacionamiento
         try{
             System.out.println("Elija una de las siguientes opciones:");

@@ -1,3 +1,11 @@
+/*
+
+ Autor: Andrés Estuardo Montoya Wilhelm
+ Programa: Parqueo.java
+ Creación: 30/8/2021   Modificación: 05/9/2021
+ Lenguaje: Java
+    
+*/
 public class Parqueo {
     String tipo;
     boolean techado;
